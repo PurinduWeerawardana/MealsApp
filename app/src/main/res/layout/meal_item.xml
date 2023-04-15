@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/mealName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Sweet and Sour Pork" />
+
+        <ImageView
+            android:id="@+id/mealImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="5dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/mealCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Category: Chinese" />
+
+        <TextView
+            android:id="@+id/mealArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Area: Asia" />
+
+        <TextView
+            android:id="@+id/mealTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Tags: sweet, sour" />
+
+        <TextView
+            android:id="@+id/mealDrinkAlternate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Drink Alternate: sweet" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/mealIngredients"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="5dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            tools:text="Ingredients: sweet, sour" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/mealMeasures"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="5dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            tools:text="Measures: sweet, sour" />-->
+
+        <TableLayout
+            android:id="@+id/ingredientsAndMeasuresTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <TableRow
+                android:id="@+id/tableHead"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/ingredientNameColumnHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Ingredient"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Ingredient" />
+
+                <TextView
+                    android:id="@+id/ingredientMeasureColumnHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Measure"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Measure" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/mealInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Instructions: I have a styled TextView whose real text is populated dynamically at runtime. The Graphical Layout view is very useful for getting a feel on how this component works with others in terms of look and feel, etc. There is no sensible default to this text field and I wish it to be blank before being populated. If I don't specify any text in the TextView declaration then the TextView is blank. I can set the text manually using:" />
+
+        <TextView
+            android:id="@+id/mealVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            tools:text="Video: https://www.youtube.com" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

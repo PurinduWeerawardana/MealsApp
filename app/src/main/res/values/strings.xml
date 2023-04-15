@@ -91,4 +91,19 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="add_meals_to_db">Add Meals to DB</string>
+    <string name="search_for_meals">Search For Meals</string>
+    <string name="search_by_ingredient">Search By Ingredient</string>
+    <string name="search_by_name">Search By Name</string>
+    <string name="app_logo">App Logo</string>
+    <string name="enter_an_ingredient_to_search">Enter an ingredient to search</string>
+    <string name="ingredient">ingredient</string>
+    <string name="retrieve_meals">Retrieve Meals</string>
+    <string name="save_meals">Save Meals</string>
+    <string name="meal">meal</string>
+    <string name="search">Search</string>
+    <string name="enter_a_meal_name_to_search">Enter a meal name to search</string>
+    <string name="mealTxt">meal</string>
+    <string name="enter_a_meal_to_search">Enter a meal to search</string>
+    <string name="searchTxt">Search</string>
 </resources>

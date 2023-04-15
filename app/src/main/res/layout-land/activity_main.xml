@@ -12,20 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/add_meals_to_db"
-        app:layout_constraintBottom_toTopOf="@+id/btnSearchByIngredient"
-        app:layout_constraintEnd_toEndOf="@+id/btnSearchByIngredient"
-        app:layout_constraintStart_toStartOf="@+id/btnSearchByIngredient"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchForMeals"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearchForMeals"
+        app:layout_constraintStart_toStartOf="@+id/btnSearchForMeals"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnSearchForMeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
         android:layout_marginBottom="16dp"
         android:text="@string/search_for_meals"
-        app:layout_constraintBottom_toTopOf="@+id/btnSearchByName"
-        app:layout_constraintEnd_toEndOf="@+id/btnSearchByName"
-        app:layout_constraintStart_toStartOf="@+id/btnSearchByName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -34,20 +34,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/search_by_ingredient"
-        app:layout_constraintBottom_toTopOf="@+id/btnSearchForMeals"
-        app:layout_constraintEnd_toEndOf="@+id/btnSearchForMeals"
-        app:layout_constraintStart_toStartOf="@+id/btnSearchForMeals"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchByName"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearchByName"
+        app:layout_constraintStart_toStartOf="@+id/btnSearchByName"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnSearchByName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="96dp"
         android:layout_marginBottom="16dp"
         android:text="@string/search_by_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
     <ImageView

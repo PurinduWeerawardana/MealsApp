@@ -3,6 +3,7 @@ package com.example.meals.adapter
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,8 +59,27 @@ class MealItemAdapter(private val context: Context, private val meals: List<Meal
         holder.mealDrinkAlternate.text = "Drink Alternate: ${meal.drinkAlternate}"
         val ingredientsList: List<String> = meal.ingredients.split(",")
         val measuresList: List<String> = meal.measures.split(",")
+        holder.ingredientsTableLayout.removeAllViews()
+        val headerRow = TableRow(context)
+        val headerIngredient = TextView(context)
+        val headerMeasure = TextView(context)
+        headerIngredient.text = "Ingredient"
+        headerIngredient.textSize = 16f
+        headerIngredient.setTypeface(null, Typeface.BOLD)
+        headerIngredient.setPadding(30, 0, 30, 0)
+        headerIngredient.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        headerIngredient.setBackgroundResource(R.drawable.border)
+        headerMeasure.text = "Measure"
+        headerMeasure.textSize = 16f
+        headerMeasure.setTypeface(null, Typeface.BOLD)
+        headerMeasure.setPadding(30, 0, 30, 0)
+        headerMeasure.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        headerMeasure.setBackgroundResource(R.drawable.border)
+        headerRow.addView(headerIngredient)
+        headerRow.addView(headerMeasure)
+        holder.ingredientsTableLayout.addView(headerRow)
         for (i in ingredientsList) {
-            if (!i.equals("null")){
+            if (!i.equals("null")) {
                 val ingredientRow = TableRow(context)
                 val ingredientName = TextView(context)
                 val ingredientMeasure = TextView(context)

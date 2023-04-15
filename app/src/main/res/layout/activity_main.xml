@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddToDb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddToDb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Add Meals to DB"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchByIngredient"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearchByIngredient"
+        app:layout_constraintStart_toStartOf="@+id/btnSearchByIngredient" />
+
+    <Button
+        android:id="@+id/btnSearchForMeals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Search For Meals"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchByName"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearchByName"
+        app:layout_constraintStart_toStartOf="@+id/btnSearchByName" />
+
+    <Button
+        android:id="@+id/btnSearchByIngredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Search By Ingredient"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearchForMeals"
+        app:layout_constraintEnd_toEndOf="@+id/btnSearchForMeals"
+        app:layout_constraintStart_toStartOf="@+id/btnSearchForMeals" />
+
+    <Button
+        android:id="@+id/btnSearchByName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Search By Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

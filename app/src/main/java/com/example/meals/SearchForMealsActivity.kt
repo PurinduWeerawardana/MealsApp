@@ -39,13 +39,7 @@ class SearchForMealsActivity : AppCompatActivity() {
                     launch {
                         withContext(Dispatchers.IO) {
                             val mealsFromDatabase: List<Meal> = mealDao.getMealsByName(mealToSearch)
-                            if (mealsFromDatabase.isNotEmpty()) {
-                                updateUI(mealsFromDatabase)
-                            } else{
-                                runOnUiThread{
-                                    mealInfo.text = "No meals found for $mealToSearch."
-                                }
-                            }
+                            updateUI(mealsFromDatabase)
                         }
                     }
                 }
@@ -54,10 +48,17 @@ class SearchForMealsActivity : AppCompatActivity() {
     }
 
     private fun updateUI(mealsFromDatabase: List<Meal>) {
-        runOnUiThread{
-            mealInfo.text = "Found ${mealsFromDatabase.size} meals for ${mealTextInput.text}."
-            mealViewer.adapter = MealItemAdapter(this, mealsFromDatabase)
-            mealViewer.setHasFixedSize(false)
+        if (mealsFromDatabase.isNotEmpty()) {
+            runOnUiThread{
+                mealInfo.text = "Found ${mealsFromDatabase.size} meals for ${mealTextInput.text}."
+                mealViewer.adapter = MealItemAdapter(this, mealsFromDatabase)
+                mealViewer.setHasFixedSize(false)
+            }
+        } else{
+            runOnUiThread{
+                mealInfo.text = "No meals found for ${mealTextInput.text}."
+                mealViewer.adapter = MealItemAdapter(this, mealsFromDatabase)
+            }
         }
     }
 }

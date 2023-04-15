@@ -28,8 +28,6 @@ class MealItemAdapter(private val context: Context, private val meals: List<Meal
         val mealTags: TextView = view.findViewById(R.id.mealTags)
         val mealDrinkAlternate: TextView = view.findViewById(R.id.mealDrinkAlternate)
         val ingredientsTableLayout: TableLayout = view.findViewById(R.id.ingredientsAndMeasuresTable)
-//        val mealIngredients: TextView = view.findViewById(R.id.mealIngredients)
-//        val mealMeasures: TextView = view.findViewById(R.id.mealMeasures)
         val mealInstructions: TextView = view.findViewById(R.id.mealInstructions)
         val mealVideo: TextView = view.findViewById(R.id.mealVideo)
     }

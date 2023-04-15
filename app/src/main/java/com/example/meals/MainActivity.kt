@@ -3,8 +3,10 @@ package com.example.meals
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.room.Room
 import com.example.meals.model.Meal
 import com.example.meals.database.MealDatabase
@@ -14,7 +16,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-    lateinit var textView: TextView
     lateinit var btnAddToDb: Button
     lateinit var btnSearchByIngredient: Button
     lateinit var btnSearchByMeal: Button
@@ -90,18 +91,33 @@ class MainActivity : AppCompatActivity() {
             null,
             null
         )
-        textView = findViewById<TextView>(R.id.tv)
         btnAddToDb = findViewById<Button>(R.id.btnAddToDb)
         val db = Room.databaseBuilder(this, MealDatabase::class.java, "meal_database").build()
         val mealDao = db.mealDao()
         btnAddToDb.setOnClickListener {
-            textView.text = "Saving meals to database..."
+//            textView.text = "Saving meals to database..."
+            Toast.makeText(this, "Saving meals to database...", Toast.LENGTH_SHORT).show()
             runBlocking {
                 launch {
                     withContext(Dispatchers.IO) {
-                        mealDao.insertMeals(listOf(meal1, meal2, meal3, meal4))
-                        val meals = mealDao.getAllMeals()
-                        updateUI(meals)
+                        try {
+                            mealDao.insertMeals(listOf(meal1, meal2, meal3, meal4))
+                            runOnUiThread{
+                                Toast.makeText(this@MainActivity, "Meals saved to database.", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            runOnUiThread {
+                                Log.e(
+                                    "MainActivity",
+                                    "Error saving meals to database: ${e.message}"
+                                )
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "Error saving meals to database: ${e.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                     }
                 }
             }
@@ -122,15 +138,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    private fun updateUI(meals: List<Meal>) {
-        runOnUiThread{
-            val stb = StringBuilder()
-            for (meal in meals) {
-                stb.append("\n ${meal.meal} saved to database")
-            }
-            textView.text = stb.toString()
-        }
-    }
-
 }

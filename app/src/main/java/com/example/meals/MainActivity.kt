@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.room.Room
 import com.example.meals.model.Meal
@@ -16,10 +15,10 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-    lateinit var btnAddToDb: Button
-    lateinit var btnSearchByIngredient: Button
-    lateinit var btnSearchByMeal: Button
-    lateinit var btnSearchByName: Button
+    private lateinit var btnAddToDb: Button
+    private lateinit var btnSearchByIngredient: Button
+    private lateinit var btnSearchByMeal: Button
+    private lateinit var btnSearchByName: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             null,
             null
         )
-        btnAddToDb = findViewById<Button>(R.id.btnAddToDb)
+        btnAddToDb = findViewById(R.id.btnAddToDb)
         val db = Room.databaseBuilder(this, MealDatabase::class.java, "meal_database").build()
         val mealDao = db.mealDao()
         btnAddToDb.setOnClickListener {
@@ -122,17 +121,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        btnSearchByIngredient = findViewById<Button>(R.id.btnSearchByIngredient)
+        btnSearchByIngredient = findViewById(R.id.btnSearchByIngredient)
         btnSearchByIngredient.setOnClickListener {
             val intent = Intent(this, SearchByIngredientActivity::class.java)
             startActivity(intent)
         }
-        btnSearchByMeal = findViewById<Button>(R.id.btnSearchForMeals)
+        btnSearchByMeal = findViewById(R.id.btnSearchForMeals)
         btnSearchByMeal.setOnClickListener {
             val intent = Intent(this, SearchForMealsActivity::class.java)
             startActivity(intent)
         }
-        btnSearchByName = findViewById<Button>(R.id.btnSearchByName)
+        btnSearchByName = findViewById(R.id.btnSearchByName)
         btnSearchByName.setOnClickListener {
             val intent = Intent(this, SearchByNameActivity::class.java)
             startActivity(intent)

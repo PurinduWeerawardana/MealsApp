@@ -28,7 +28,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
     private lateinit var saveMealsBtn: Button
     private lateinit var mealInfo: TextView
     private lateinit var mealViewer: RecyclerView
-    private val mealDetailsList = mutableListOf<String>()
+    private var mealDetailsList = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_by_ingredient)
@@ -41,7 +41,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
             if (ingredientTextInput.text.toString().isEmpty()) {
                 ingredientTextInput.error = "Please enter an ingredient"
             } else {
-                mealInfo.text = "Loading..."
+                mealInfo.text = getString(R.string.loading)
                 val ingredient = ingredientTextInput.text.toString()
                 var url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=$ingredient"
                 runBlocking{
@@ -73,7 +73,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
                                 }
                             } catch (e: Exception) {
                                 runOnUiThread {
-                                    mealInfo.text = "Error retrieving meals."
+                                    mealInfo.text = getString(R.string.error_retrieving_meals)
                                     Log.e("Error", e.toString())
                                 }
                             }
@@ -87,7 +87,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
         val mealDao = db.mealDao()
         saveMealsBtn.setOnClickListener{
             if (mealDetailsList.isEmpty()) {
-                mealInfo.text = "No meals to save"
+                mealInfo.text = getString(R.string.no_meals_to_save)
             } else {
                 val meals = mutableListOf<Meal>()
                 for (eachMeal in mealDetailsList){
@@ -145,7 +145,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
     private fun updateUI(mealDetailsList: MutableList<String>,mealsFound: Boolean = true) {
         if (!mealsFound) {
             runOnUiThread {
-                mealInfo.text = "No meals found"
+                mealInfo.text = getString(R.string.no_meals_found)
             }
         } else {
             val mealDetails: MutableList<Meal> = mutableListOf()
@@ -164,5 +164,19 @@ class SearchByIngredientActivity : AppCompatActivity() {
                 mealViewer.setHasFixedSize(true)
             }
         }
+    }
+
+    // update the screen when screen is rotated
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("mealInfo", mealInfo.text.toString())
+        outState.putStringArrayList("mealDetailsList", mealDetailsList as ArrayList<String>)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        mealInfo.text = savedInstanceState.getString("mealInfo")
+        mealDetailsList = savedInstanceState.getStringArrayList("mealDetailsList") as MutableList<String>
+        updateUI(mealDetailsList)
     }
 }

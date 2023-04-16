@@ -2,7 +2,6 @@ package com.example.meals
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -21,6 +20,7 @@ class SearchForMealsActivity : AppCompatActivity() {
     private lateinit var searchMealsBtn: Button
     private lateinit var mealViewer: RecyclerView
     private lateinit var mealInfo: TextView
+    private lateinit var mealsFromDatabase: List<Meal>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_for_meals)
@@ -38,7 +38,7 @@ class SearchForMealsActivity : AppCompatActivity() {
                 runBlocking {
                     launch {
                         withContext(Dispatchers.IO) {
-                            val mealsFromDatabase: List<Meal> = mealDao.getMealsByName(mealToSearch)
+                            mealsFromDatabase = mealDao.getMealsByName(mealToSearch)
                             updateUI(mealsFromDatabase)
                         }
                     }
@@ -50,15 +50,46 @@ class SearchForMealsActivity : AppCompatActivity() {
     private fun updateUI(mealsFromDatabase: List<Meal>) {
         if (mealsFromDatabase.isNotEmpty()) {
             runOnUiThread{
-                mealInfo.text = "Found ${mealsFromDatabase.size} meals for ${mealTextInput.text}."
+                mealInfo.text = buildString {
+                    append("Found ")
+                    append(mealsFromDatabase.size)
+                    append(" meals for ")
+                    append(mealTextInput.text)
+                    append(".")
+                }
                 mealViewer.adapter = MealItemAdapter(this, mealsFromDatabase)
                 mealViewer.setHasFixedSize(false)
             }
         } else{
             runOnUiThread{
-                mealInfo.text = "No meals found for ${mealTextInput.text}."
+                mealInfo.text = buildString {
+                    append("No meals found for ")
+                    append(mealTextInput.text)
+                    append(".")
+                }
                 mealViewer.adapter = MealItemAdapter(this, mealsFromDatabase)
             }
         }
+    }
+
+    // update the screen when screen is rotated
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (mealTextInput.text.toString().isNotEmpty() && mealsFromDatabase.isNotEmpty()) {
+            outState.putString("mealTextInput", mealTextInput.text.toString())
+            outState.putSerializable("mealsFromDatabase", mealsFromDatabase as ArrayList<Meal>)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState.containsKey("mealTextInput") && savedInstanceState.containsKey("mealsFromDatabase")){
+            mealInfo.text = savedInstanceState.getString("mealInfo")
+            mealsFromDatabase =
+                savedInstanceState.getSerializable("mealsFromDatabase") as List<Meal>
+            updateUI(mealsFromDatabase)
+        }
+
     }
 }

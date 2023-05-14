@@ -21,7 +21,9 @@ import kotlinx.coroutines.withContext
 import java.net.URL
 
 class MealItemAdapter(private val context: Context, private val meals: List<Meal>): RecyclerView.Adapter<MealItemAdapter.MealItemViewHolder>() {
+    // Declaring inner class MealItemViewHolder which extends RecyclerView.ViewHolder
     class MealItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        // Declaring variables for the views in the meal_item.xml file
         val mealName: TextView = view.findViewById(R.id.mealName)
         val mealImage: ImageView = view.findViewById(R.id.mealImage)
         val mealCategory: TextView = view.findViewById(R.id.mealCategory)
@@ -33,6 +35,7 @@ class MealItemAdapter(private val context: Context, private val meals: List<Meal
         val mealVideo: TextView = view.findViewById(R.id.mealVideo)
     }
 
+    // Override default functions
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.meal_item, parent, false)
         return MealItemViewHolder(adapterLayout)
@@ -42,6 +45,7 @@ class MealItemAdapter(private val context: Context, private val meals: List<Meal
         return meals.size
     }
 
+    // Bind the data to the views
     override fun onBindViewHolder(holder: MealItemViewHolder, position: Int) {
         val meal = meals[position]
         holder.mealName.text = meal.meal
@@ -108,8 +112,6 @@ class MealItemAdapter(private val context: Context, private val meals: List<Meal
                 holder.ingredientsTableLayout.addView(ingredientRow)
             }
         }
-//        holder.mealIngredients.text = "Ingredients: ${meal.ingredients}"
-//        holder.mealMeasures.text = "Measures: ${meal.measures}"
         holder.mealInstructions.text = "${meal.instructions}"
         holder.mealVideo.text = buildString {
             append("Video: ")

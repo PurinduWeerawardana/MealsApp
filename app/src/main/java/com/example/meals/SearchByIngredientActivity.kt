@@ -1,5 +1,6 @@
 package com.example.meals
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class SearchByIngredientActivity : AppCompatActivity() {
+    // Declaring variables
     private lateinit var ingredientTextInput: EditText
     private lateinit var retrieveMealsBtn: Button
     private lateinit var saveMealsBtn: Button
@@ -32,11 +34,14 @@ class SearchByIngredientActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_by_ingredient)
+        // Initializing variables
         ingredientTextInput = findViewById(R.id.txtInputIngredient)
         retrieveMealsBtn = findViewById(R.id.btnRetrieveMeals)
         saveMealsBtn = findViewById(R.id.btnSaveMeals)
         mealInfo = findViewById(R.id.txtIngredientInfo)
         mealViewer = findViewById(R.id.recycler_view)
+
+        // Retrieving meals from API
         retrieveMealsBtn.setOnClickListener {
             if (ingredientTextInput.text.toString().isEmpty()) {
                 ingredientTextInput.error = "Please enter an ingredient"
@@ -83,6 +88,7 @@ class SearchByIngredientActivity : AppCompatActivity() {
             }
         }
 
+        // Save meals to database
         val db = Room.databaseBuilder(this, MealDatabase::class.java, "meal_database").build()
         val mealDao = db.mealDao()
         saveMealsBtn.setOnClickListener{
@@ -142,7 +148,8 @@ class SearchByIngredientActivity : AppCompatActivity() {
 
     }
 
-    private fun updateUI(mealDetailsList: MutableList<String>,mealsFound: Boolean = true) {
+    // Function to update the UI with the meals found
+    private fun updateUI(mealDetailsList: MutableList<String>, mealsFound: Boolean = true) {
         if (!mealsFound) {
             runOnUiThread {
                 mealInfo.text = getString(R.string.no_meals_found)

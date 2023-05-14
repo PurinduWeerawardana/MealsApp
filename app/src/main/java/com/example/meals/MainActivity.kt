@@ -1,3 +1,5 @@
+// video demo: https://drive.google.com/file/d/1TJmDfknuGWy2k_bokt5sy9n05bvEn-Hf/view?usp=sharing
+
 package com.example.meals
 
 import android.content.Intent
@@ -15,6 +17,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
+    // Declaring the buttons
     private lateinit var btnAddToDb: Button
     private lateinit var btnSearchByIngredient: Button
     private lateinit var btnSearchByMeal: Button
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Hardcoding the given meals
         val meal1 = Meal(
             1,
             "Sweet and Sour Pork",
@@ -90,11 +94,11 @@ class MainActivity : AppCompatActivity() {
             null,
             null
         )
+        // Add hardcoded meals to database
         btnAddToDb = findViewById(R.id.btnAddToDb)
         val db = Room.databaseBuilder(this, MealDatabase::class.java, "meal_database").build()
         val mealDao = db.mealDao()
         btnAddToDb.setOnClickListener {
-//            textView.text = "Saving meals to database..."
             Toast.makeText(this, "Saving meals to database...", Toast.LENGTH_SHORT).show()
             runBlocking {
                 launch {
@@ -121,6 +125,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        // Create buttons to navigate to search activities
         btnSearchByIngredient = findViewById(R.id.btnSearchByIngredient)
         btnSearchByIngredient.setOnClickListener {
             val intent = Intent(this, SearchByIngredientActivity::class.java)

@@ -20,6 +20,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class SearchByNameActivity : AppCompatActivity() {
+    // Declaring variables
     private lateinit var mealNameTextInput: EditText
     private lateinit var searchBtn: Button
     private lateinit var mealInfo: TextView
@@ -28,10 +29,13 @@ class SearchByNameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_by_name)
+        // Initializing variables
         mealNameTextInput = findViewById(R.id.txtInputMealName)
         searchBtn = findViewById(R.id.btnSearchForMealsByName)
         mealViewer = findViewById(R.id.recycler_view)
         mealInfo = findViewById(R.id.txtMealNameInfo)
+
+        // Searching for meals by name
         searchBtn.setOnClickListener{
             if (mealNameTextInput.text.toString().isEmpty()) {
                 mealNameTextInput.error = "Please enter a meal"
@@ -81,6 +85,7 @@ class SearchByNameActivity : AppCompatActivity() {
         }
     }
 
+    // Update the UI with the meals found
     private fun updateUI(mealDetails: List<Meal>) {
         if (mealDetails.isNotEmpty()) {
             runOnUiThread {

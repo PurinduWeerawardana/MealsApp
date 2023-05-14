@@ -16,6 +16,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class SearchForMealsActivity : AppCompatActivity() {
+    // Declaring variables
     private lateinit var mealTextInput: EditText
     private lateinit var searchMealsBtn: Button
     private lateinit var mealViewer: RecyclerView
@@ -24,6 +25,8 @@ class SearchForMealsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_for_meals)
+
+        // Initializing variables
         mealTextInput = findViewById(R.id.txtInputMeal)
         searchMealsBtn = findViewById(R.id.btnSearchForMeals)
         mealViewer = findViewById(R.id.recycler_view)
@@ -47,6 +50,7 @@ class SearchForMealsActivity : AppCompatActivity() {
         }
     }
 
+    // update the UI with the meals found
     private fun updateUI(mealsFromDatabase: List<Meal>) {
         if (mealsFromDatabase.isNotEmpty()) {
             runOnUiThread{
